@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2>Cluster Finder</h2>
+<p>Select a compentency, product, and country to get the cluster group.</p>
+
+<form action="/predict" method="get">
+    <table>
+        <tr class="table-row">
+            <td class="table-data">{{form.competency.label}}</td>
+            <td class="table-data">
+                <!--<select name="competency">
+                    {% for x in form.competency_list %}
+                    <option value="{{ x[0] }}">{{ x[1] }}</option>
+                    {% endfor %}
+                </select>-->
+                <select name="competency">
+                    <option value="0" SELECTED>Gold Competencies</option>
+                    <option value="1">Silver Competencies</option>
+                </select>
+            </td>
+        </tr>
+        <tr class="table-row">
+            <td class="table-data">{{form.product.label}}</td>
+            <td class="table-data">
+                <select name="product">
+                    <!--{% for x in form.product_list %}
+                    <option value="{{ x[0] }}">{{ x[1] }}</option>
+                    {% endfor %}-->
+                    <option value="0" SELECTED>Azure</option>
+                    <option value="1">Dynamics365Enterprise</option>
+                    <option value="2">DeveloperTools</option>
+                    <option value="3">EnterpriseMobilityAndSecurity</option>
+                    <option value="4">Dynamics365Business </option>
+                    <option value="5">Exchange </option>
+                    <option value="6">DynamicsAX </option>
+                    <option value="7">GP</option>
+                    <option value="8">Microsoft360</option>
+                    <option value="9">PowerBI</option>
+                    <option value="10">Office</option>
+                    <option value="11">Project</option>
+                    <option value="12">SL</option>
+                    <option value="13">SQL</option>
+                    <option value="14">SharePoint </option>
+                    <option value="15">SkypeForBusiness </option>
+                    <option value="16">SurfaceHub </option>
+                    <option value="17">Surface</option>
+                    <option value="18">Teams</option>
+                    <option value="19">Yammer</option>
+                    <option value="20">Visio</option>
+                    <option value="21">Windows</option>
+                </select>
+            </td>
+        </tr>
+        <tr class="table-row">
+            <td class="table-data">{{form.country.label}}</td>
+            <td class="table-data">
+                <select name="country">
+                    <!--{% for x in form.country_list %}
+                    <option value="{{ x[0] }}">{{ x[1] }}</option>
+                    {% endfor %}-->
+                    <option value="0" SELECTED>US</option>
+                    <option value="1">GB</option>
+                    <option value="2">GE</option>
+                    <option value="3">FR</option>
+                    <option value="4">AU </option>
+                </select>
+            </td>
+        </tr>
+        <tr class="table-row"><td></td><td class="table-data"><input type="submit" value="Submit" /></td></tr>
+    </table>
+</form>
+<div style="padding-top:20px">
+    {% if submitted %}
+    <h3>Result</h3>
+    <p>The predicted cluster group is <b>{{ prediction }}</b>.</p>
+    {% endif %}
+</div>
+
+{% endblock %}
